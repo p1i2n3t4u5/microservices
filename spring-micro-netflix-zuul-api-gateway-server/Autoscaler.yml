@@ -1,0 +1,33 @@
+# Please edit the object below. Lines beginning with a '#' will be ignored,
+# and an empty file will abort the edit. If an error occurs while saving this file will be
+# reopened with the relevant failures.
+#
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  annotations:
+    autoscaling.alpha.kubernetes.io/conditions: '[{"type":"AbleToScale","status":"True","lastTransitionTime":"2019-09-13T05:04:06Z","reason":"ReadyForNewScale","message":"recommended
+      size matches current size"},{"type":"ScalingActive","status":"True","lastTransitionTime":"2019-09-13T06:23:42Z","reason":"ValidMetricFound","message":"the
+      HPA was able to successfully calculate a replica count from cpu resource utilization
+      (percentage of request)"},{"type":"ScalingLimited","status":"True","lastTransitionTime":"2019-09-13T19:52:04Z","reason":"TooFewReplicas","message":"the
+      desired replica count is increasing faster than the maximum scale rate"}]'
+    autoscaling.alpha.kubernetes.io/current-metrics: '[{"type":"Resource","resource":{"name":"cpu","currentAverageUtilization":4,"currentAverageValue":"4m"}}]'
+  creationTimestamp: 2019-09-13T05:03:51Z
+  name: businessremotingdeployment
+  namespace: default
+  resourceVersion: "1132720"
+  selfLink: /apis/autoscaling/v1/namespaces/default/horizontalpodautoscalers/businessremotingdeployment
+  uid: e0b0c82d-d5e3-11e9-ab6f-42010a8c009c
+spec:
+  maxReplicas: 6
+  minReplicas: 4
+  scaleTargetRef:
+    apiVersion: extensions/v1beta1
+    kind: Deployment
+    name: businessremotingdeployment
+  targetCPUUtilizationPercentage: 50
+status:
+  currentCPUUtilizationPercentage: 4
+  currentReplicas: 2
+  desiredReplicas: 2
+  lastScaleTime: 2019-09-13T16:51:15Z

@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: "2019-09-12T09:21:27Z"
+  labels:
+    run: businessremotingdeployment
+  name: businessremotingdeployment
+  namespace: default
+  resourceVersion: "563288"
+  selfLink: /api/v1/namespaces/default/services/businessremotingdeployment
+  uid: b2f466b0-d53e-11e9-8846-42010a8c01b7
+spec:
+  clusterIP: 10.107.15.119
+  externalTrafficPolicy: Cluster
+  ports:
+  - nodePort: 30278
+    port: 8000           --------->> port accessable inside the cluster
+    protocol: TCP        
+    targetPort: 8000     --------->> port to forward to inside pod
+  selector:
+    run: businessremotingdeployment    
+  sessionAffinity: None
+  type: LoadBalancer
+status:
+  loadBalancer:
+    ingress:
+    - ip: 35.236.179.111
